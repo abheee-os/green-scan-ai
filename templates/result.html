@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result - Green Scan AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="result-container">
+        <header>
+            <h1>Analysis Result</h1>
+        </header>
+
+        <main class="result-content">
+            <div class="image-section">
+                <h2>Uploaded Image</h2>
+                <img src="{{ url_for('static', filename='uploads/' + image_file) }}" alt="Uploaded Leaf"
+                    class="result-image">
+            </div>
+
+            <div class="prediction-section">
+                <h2>Diagnosis</h2>
+                <div class="prediction-card">
+                    <p class="prediction-text">{{ prediction }}</p>
+                </div>
+                <a href="/" class="back-btn">Analyze Another Image</a>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
