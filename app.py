@@ -101,6 +101,8 @@ def upload_file():
                 
                 return render_template('result.html', prediction=prediction, image_file=filename)
             except Exception as e:
+                import traceback
+                traceback.print_exc()
                 return f"An error occurred while processing the image: {str(e)}", 500
 
     return redirect(url_for('index'))
