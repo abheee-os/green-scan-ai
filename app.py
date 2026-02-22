@@ -85,14 +85,21 @@ def upload_file():
             return redirect(request.url)
         
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            file.save(file_path)
-            
-            # Make prediction
-            prediction = predict_label(file_path)
-            
-            return render_template('result.html', prediction=prediction, image_file=filename)
+            try:
+                filename = secure_filename(file.filename)
+                # Fallback if filename becomes empty
+                if not filename:
+                    filename = 'uploaded_image.jpg'
+                    
+                file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(file_path)
+                
+                # Make prediction
+                prediction = predict_label(file_path)
+                
+                return render_template('result.html', prediction=prediction, image_file=filename)
+            except Exception as e:
+                return f"An error occurred while processing the image: {str(e)}", 500
 
     return redirect(url_for('index'))
 
