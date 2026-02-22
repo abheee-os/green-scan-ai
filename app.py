@@ -8,7 +8,9 @@ import numpy as np
 app = Flask(__name__)
 
 # Configure upload folder
-UPLOAD_FOLDER = 'static/uploads'
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static', 'uploads')
+
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
