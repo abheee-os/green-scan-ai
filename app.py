@@ -44,7 +44,7 @@ def predict_label(img_path):
     i = i / 255.0  # Normalize if the model expects normalized input
     i = i.reshape(1, 160, 160, 3)
     
-    p = model.predict(i)
+    p = model.predict(i, verbose=0)
     
     # Class names provided by the user (Corrected Order)
     class_names = [
